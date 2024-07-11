@@ -1,0 +1,2 @@
+- Comic Code Ligatures
+- BerkeleyMonoVariable Nerd Font Mono
