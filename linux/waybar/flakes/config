@@ -1,0 +1,139 @@
+{
+  "layer" : "top",
+  "position" : "top",
+  "modules-left" : [
+          "custom/launcher",
+          "wlr/workspaces",
+          "temperature",
+          "custom/wall",
+          "mpd",
+        ],
+        "modules-center" : [
+          "clock"
+        ],
+        "modules-right" : [         
+          "pulseaudio",
+          "backlight",
+          "memory",
+          "cpu",
+          "network",
+          "battery",
+          "tray"
+        ],
+        
+        "custom/launcher" : {
+          "format" : " ",
+          "on-click" : "killall rofi || rofi -show drun -theme ~/.config/rofi/global/rofi.rasi",
+          "tooltip" : false,
+        },
+        "custom/wall" : {
+          "on-click" : "~/.config/waybar/scripts/wall.sh",
+          "on-click-middle" : "default_wall",
+          "on-click-right" : "",
+          "format" : " ﴔ ",
+          "tooltip" : false,
+        },
+        "custom/cava-internal" : {
+          "exec" : "sleep 1s && ~/.config/waybar/scripts/cava-internal.sh",
+          "tooltip" : false,
+        },
+        "wlr/workspaces" : {
+          "format" : "{icon}",
+          "on-click" : "activate",
+        },
+        "idle_inhibitor" : {
+          "format" : "{icon}",
+          "format-icons" : {
+            "activated" : "",
+            "deactivated" : "",
+          },
+          "tooltip" : false,
+        },
+        "backlight" : {
+          "device" : "intel_backlight",
+          "on-scroll-up" : "light -A 5",
+          "on-scroll-down" : "light -U 5",
+          "format" : "{icon} {percent}%",
+          "format-icons" : [ "", "", "", "" ],
+        },
+        "pulseaudio" : {
+          "scroll-step" : 1,
+          "format" : "{icon} {volume}%",
+          "format-muted" : "婢 Muted",
+          "format-icons" : {
+            "default" : [ "", "", "" ],
+          },
+          "states" : {
+            "warning" : 85,
+          },
+          "on-click" : "pamixer -t",
+          "tooltip" : false,
+        },
+        "battery" : {
+          "interval" : 10,
+          "states" : {
+            "warning" : 20,
+            "critical" : 10,
+          },
+          "format" : "{icon} {capacity}%",
+          "format-icons" : [ "", "", "", "", "", "", "", "", "" ],
+          "format-full" : "{icon} {capacity}%",
+          "format-charging" : " {capacity}%",
+          "tooltip" : false,
+        },
+        "clock" : {
+          "interval" : 1,
+          "format" : "{:%I:%M %p}",
+          "tooltip" : false,
+        },
+        "memory" : {
+          "interval" : 1,
+          "format" : "﬙ {percentage}%",
+          "states" : {
+            "warning" : 85,
+          },
+        },
+        "cpu" : {
+          "interval" : 1,
+          "format" : " {usage}%",
+          "on-click": "kitty procs --sortd cpu --watch-interval 2"
+        },
+        "mpd" : {
+          "max-length" : 25,
+          "format" : "<span foreground:'#bb9af7'></span> {title}",
+          "format-paused" : " {title}",
+          "format-stopped" : "<span foreground:'#bb9af7'></span>",
+          "format-disconnected" : "",
+          "on-click" : "mpc --quiet toggle",
+          "on-click-right" : "mpc update, mpc ls | mpc add",
+          "on-click-middle" : "kitty --class:'ncmpcpp' ncmpcpp ",
+          "on-scroll-up" : "mpc --quiet prev",
+          "on-scroll-down" : "mpc --quiet next",
+          "smooth-scrolling-threshold" : 5,
+          "tooltip-format" : "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})",
+        },
+        "network" : {
+          "interval" : 1,
+          "format-wifi" : "說 {essid}",
+          "format-ethernet" : "  {ifname} ({ipaddr})",
+          "format-linked" : "說 {essid} (No IP)",
+          "format-disconnected" : "說 Disconnected",
+          "tooltip" : false,
+        },
+        "temperature" : {
+          // "hwmon-path": "${env:HWMON_PATH}",
+          //"critical-threshold": 80,
+          "tooltip" : false,
+          "format" : " {temperatureC}°C",
+        },
+        "custom/powermenu" : {
+          "format" : "",
+          "on-click" : "pkill rofi || ~/.config/waybar/scripts/power-menu/powermenu.sh",
+          "tooltip" : false,
+        },
+        "tray" : {
+          "icon-size" : 15,
+          "spacing" : 5,
+        },
+    },
+}
