@@ -1,4 +1,0 @@
-Subject line (be imperative, try keep under 50 and no more than 72) 
-# delete this line: if applied this commit will ?
-Multiline description
-(feel free to talk)

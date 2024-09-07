@@ -1,6 +1,0 @@
-ZDOTDIR="$HOME/.config/zsh"
-
-# vim:ft=zsh
-
-# bun completions
-[ -s "/home/cybersage/.bun/_bun" ] && source "/home/cybersage/.bun/_bun"
