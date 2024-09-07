@@ -1,0 +1,8 @@
+[user]
+	email = "37631123+gamernewone@users.noreply.github.com "
+	signingkey = 347BB1F84B963D56
+[commit]
+	gpgsign = true
+	template = /home/cybersage/.gitcommit.txt
+[init]
+	defaultBranch = main
