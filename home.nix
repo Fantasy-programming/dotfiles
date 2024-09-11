@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{  pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -27,8 +27,10 @@
       pkgs.devenv
       pkgs.fzf
       pkgs.eza
-    pkgs.fd
-    pkgs.ripgrep
+      pkgs.fd
+      pkgs.ripgrep
+      pkgs.tmux
+    # pkgs.httpie
 
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -51,10 +53,8 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-
-    # zsh
     ".config/zsh" = { source = programs/zsh; recursive = true; };
-
+    ".config/tmux" = {source = programs/tmux; recursive = true; };
   };
 
   # Programs
@@ -69,22 +69,22 @@
     enable = true;
     settings = {
       gui = {
-        theme = {
-          activeBorderColor = ["blue" "bold"];
-          inactiveBorderColor = ["white"];
-          optionsTextColor = ["blue"];
-          selectedLineBgColor = ["default"];
-          selectedRangeBgColor = ["default"];
-          cherryPickedCommitBgColor = ["cyan"];
-          cherryPickedCommitFgColor = ["blue"];
-          unstagedChangesColor = ["red"];
-          };
+        # theme = {
+        #   activeBorderColor = ["blue" "bold"];
+        #   inactiveBorderColor = ["white"];
+        #   optionsTextColor = ["blue"];
+        #   selectedLineBgColor = ["default"];
+        #   selectedRangeBgColor = ["default"];
+        #   cherryPickedCommitBgColor = ["cyan"];
+        #   cherryPickedCommitFgColor = ["blue"];
+        #   unstagedChangesColor = ["red"];
+        #   };
         showFileTree = true;
         showListFooter = false;
         showRandomTip = false;
         showBottomLine = false;
         showCommandLog = true;
-        showIcons = true;
+        showIcons = false;
       };
       disableStartupPopups = true;
       notARepository = "skip";
@@ -276,6 +276,9 @@ EOF
 # ";
     # };
   };
+
+
+
 
   programs.zoxide = {
     enable = true;
