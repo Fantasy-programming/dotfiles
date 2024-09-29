@@ -3,20 +3,18 @@
 ##
 
 export PATH="$PNPM_HOME:$PATH"
+export GPG_TTY="${TTY:-$(tty)}"
 # export PATH="$HOME/.scripts:$PATH"
 # export PATH="$HOME/.local/bin:$PATH"
 # export PATH="$HOME/.cargo/bin:$PATH"
 # export PATH="$HOME/go/bin:$PATH"
-export GPG_TTY="${TTY:-$(tty)}"
-
-## BUN
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 export SUDO_PROMPT="passwd: "
 export VISUAL="nvim"
 export EDITOR="nvim"
+export TERM="xterm-256color"
 
+# XDG CONFIG
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"

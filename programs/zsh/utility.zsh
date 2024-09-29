@@ -3,11 +3,13 @@
 ##
 
 function _smooth_fzf() {
-  local fname
+  local filename
   local current_dir="$PWD"
+
   cd "${XDG_CONFIG_HOME:-~/.config}"
-  fname="$(fzf)" || return
-  $EDITOR "$fname"
+  filename="$(fzf)" || return
+  $EDITOR "$filename"
+
   cd "$current_dir"
 }
 
@@ -27,73 +29,55 @@ function _sudo_replace_buffer() {
 
 function _sudo_command_line() {
   # If line is empty, get the last run command from history
-  [[ -z $BUFFER ]] && LBUFFER="$(fc -ln -1)"
+  if [[ -z $BUFFER ]]; then
+    LBUFFER="$(fc -ln -1)"
+  fi
 
-  # Save beginning space
+  # Save beginning space if present
   local WHITESPACE=""
+
   if [[ ${LBUFFER:0:1} = " " ]]; then
     WHITESPACE=" "
     LBUFFER="${LBUFFER:1}"
   fi
 
-  {
-    # If $SUDO_EDITOR or $VISUAL are defined, then use that as $EDITOR
-    # Else use the default $EDITOR
-    local EDITOR=${SUDO_EDITOR:-${VISUAL:-$EDITOR}}
+  # If $SUDO_EDITOR or $VISUAL are defined, then use that as $EDITOR
+  # Else use the default $EDITOR
+  local EDITOR=${SUDO_EDITOR:-${VISUAL:-$EDITOR}}
 
-    # If $EDITOR is not set, just toggle the sudo prefix on and off
-    if [[ -z "$EDITOR" ]]; then
-      case "$BUFFER" in
-        sudo\ -e\ *) _sudo_replace_buffer "sudo -e" "" ;;
-        sudo\ *) _sudo_replace_buffer "sudo" "" ;;
-        *) LBUFFER="sudo $LBUFFER" ;;
-      esac
-      return
-    fi
-
-    # Check if the typed command is really an alias to $EDITOR
-
-    # Get the first part of the typed command
-    local cmd="${${(Az)BUFFER}[1]}"
-    # Get the first part of the alias of the same name as $cmd, or $cmd if no alias matches
-    local realcmd="${${(Az)aliases[$cmd]}[1]:-$cmd}"
-    # Get the first part of the $EDITOR command ($EDITOR may have arguments after it)
-    local editorcmd="${${(Az)EDITOR}[1]}"
-
-    # Note: ${var:c} makes a $PATH search and expands $var to the full path
-    # The if condition is met when:
-    # - $realcmd is '$EDITOR'
-    # - $realcmd is "cmd" and $EDITOR is "cmd"
-    # - $realcmd is "cmd" and $EDITOR is "cmd --with --arguments"
-    # - $realcmd is "/path/to/cmd" and $EDITOR is "cmd"
-    # - $realcmd is "/path/to/cmd" and $EDITOR is "/path/to/cmd"
-    # or
-    # - $realcmd is "cmd" and $EDITOR is "cmd"
-    # - $realcmd is "cmd" and $EDITOR is "/path/to/cmd"
-    # or
-    # - $realcmd is "cmd" and $EDITOR is /alternative/path/to/cmd that appears in $PATH
-    if [[ "$realcmd" = (\$EDITOR|$editorcmd|${editorcmd:c}) \
-      || "${realcmd:c}" = ($editorcmd|${editorcmd:c}) ]] \
-      || builtin which -a "$realcmd" | command grep -Fx -q "$editorcmd"; then
-      _sudo_replace_buffer "$cmd" "sudo -e"
-      return
-    fi
-
-    # Check for editor commands in the typed command and replace accordingly
+  # If $EDITOR is not set, just toggle the sudo prefix on and off
+  if [[ -z "$EDITOR" ]]; then
     case "$BUFFER" in
-      $editorcmd\ *) _sudo_replace_buffer "$editorcmd" "sudo -e" ;;
-      \$EDITOR\ *) _sudo_replace_buffer '$EDITOR' "sudo -e" ;;
-      sudo\ -e\ *) _sudo_replace_buffer "sudo -e" "$EDITOR" ;;
-      sudo\ *) _sudo_replace_buffer "sudo" "" ;;
-      *) LBUFFER="sudo $LBUFFER" ;;
+    sudo\ -e\ *) _sudo_replace_buffer "sudo -e" "" ;;
+    sudo\ *) _sudo_replace_buffer "sudo" "" ;;
+    *) LBUFFER="sudo $LBUFFER" ;;
     esac
-  } always {
-    # Preserve beginning space
-    LBUFFER="${WHITESPACE}${LBUFFER}"
+    return
+  fi
 
-    # Redisplay edit buffer (compatibility with zsh-syntax-highlighting)
-    zle redisplay
-  }
+  # Get the command and check if it's an alias or matches the editor
+  local cmd="${BUFFER%% *}"              # Extract first word (command)
+  local realcmd="${aliases[$cmd]:-$cmd}" # Get alias or command if no alias exists
+  local editorcmd="${EDITOR%% *}"        # Extract first word from EDITOR
+
+  # Check if the real command matches the editor or an alias for the editor
+  if [[ "$realcmd" == "$EDITOR" || "$realcmd" == "$editorcmd" || "$realcmd" == "${editorcmd:c}" ]]; then
+    _sudo_replace_buffer "$cmd" "sudo -e"
+    return
+  fi
+
+  # If it doesn't match, apply transformations for editor commands
+  case "$BUFFER" in
+  $editorcmd\ *) _sudo_replace_buffer "$editorcmd" "sudo -e" ;;
+  \$EDITOR\ *) _sudo_replace_buffer '$EDITOR' "sudo -e" ;;
+  sudo\ -e\ *) _sudo_replace_buffer "sudo -e" "$EDITOR" ;;
+  sudo\ *) _sudo_replace_buffer "sudo" "" ;;
+  *) LBUFFER="sudo $LBUFFER" ;;
+  esac
+
+  # Preserve leading whitespace and redisplay buffer
+  LBUFFER="${WHITESPACE}${LBUFFER}"
+  zle redisplay
 }
 
 function _vi_search_fix() {
@@ -102,21 +86,21 @@ function _vi_search_fix() {
 }
 
 function toppy() {
-    history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n 21
+  history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n 21
 }
 
 function cd() {
-	builtin cd "$@" && command ls --group-directories-first --color=auto -F
+  builtin cd "$@" && command ls --group-directories-first --color=auto -F
 }
 
-function git-svn(){
+function git-svn() {
   if [[ ! -z "$1" && ! -z "$2" ]]; then
-          echo "Starting clone/copy ..."
-          repo=$(echo $1 | sed 's/\/$\|.git$//')
-          svn export "$repo/trunk/$2"
+    echo "Starting clone/copy ..."
+    repo=$(echo $1 | sed 's/\/$\|.git$//')
+    svn export "$repo/trunk/$2"
   else
-          echo "Use: git-svn <repository> <subdirectory>"
-  fi  
+    echo "Use: git-svn <repository> <subdirectory>"
+  fi
 }
 
 # vim:ft=sh

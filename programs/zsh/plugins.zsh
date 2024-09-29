@@ -35,9 +35,9 @@ zinit light zsh-users/zsh-history-substring-search
 zinit ice wait'2' lucid
 zinit light zdharma-continuum/history-search-multi-word
 
-# # FZF
-# zinit ice from"gh-r" as"command"
-# zinit light junegunn/fzf-bin
+zinit ice pick'init.zsh'
+zinit light laggardkernel/zsh-tmux
+
 
 # EXA
 zinit ice wait lucid from"gh-r" as"program" mv"bin/exa* -> exa"
