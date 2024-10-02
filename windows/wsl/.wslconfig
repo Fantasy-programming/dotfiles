@@ -1,0 +1,14 @@
+[wsl2]
+memory=10GB
+swap=0
+networkingMode=mirrored
+#vmSwitch=wsl-nic
+#dhcp=true
+dnsTunneling=true
+#macAddress=0E:00:00:00:00:00
+#ipv6=false
+
+[experimental]
+autoMemoryReclaim=gradual
+sparseVhd=true
+hostAddressLoopback=true
