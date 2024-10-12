@@ -24,21 +24,18 @@
       pkgs.yazi
       pkgs.tmux
       pkgs.gnupg
-    # pkgs.httpie
-
-
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
+      pkgs.ollama
+      pkgs.btop
+      pkgs.goldwarden
+      pkgs.tmux-sessionizer
+      pkgs.jq
+      pkgs.lazydocker
+      pkgs.glow
   ];
 
   # Dotfiles (manual)
   home.file = {
-    ".config/zsh" = { source = programs/zsh; recursive = true; };
+    ".config/zsh" =  { source = programs/zsh; recursive = true; };
     ".config/tmux" = {source = programs/tmux; recursive = true; };
   };
 
@@ -107,7 +104,7 @@ EOF
   };
 
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    TERM = "xterm-256color";
   };
 
   # Let Home Manager install and manage itself.

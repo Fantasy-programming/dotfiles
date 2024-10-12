@@ -38,6 +38,8 @@ zinit light zdharma-continuum/history-search-multi-word
 zinit ice pick'init.zsh'
 zinit light laggardkernel/zsh-tmux
 
+# Ni
+zinit load azu/ni.zsh
 
 # EXA
 zinit ice wait lucid from"gh-r" as"program" mv"bin/exa* -> exa"
