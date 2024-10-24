@@ -12,7 +12,6 @@
   home.packages = [
       pkgs.neovim
       pkgs.gh
-      pkgs.zig
       pkgs.unzip
       pkgs.gcc
       pkgs.cargo
@@ -26,11 +25,11 @@
       pkgs.gnupg
       pkgs.ollama
       pkgs.btop
-      pkgs.goldwarden
       pkgs.tmux-sessionizer
       pkgs.jq
       pkgs.lazydocker
       pkgs.glow
+      pkgs.dua
   ];
 
   # Dotfiles (manual)
