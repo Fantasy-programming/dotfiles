@@ -254,7 +254,6 @@ keybindings:
     binding: "Alt+D"
   - command: "move workspace down"
     binding: "Alt+S"
-
   # Move focused window to a workspace defined in `workspaces` config.
   - commands: ["move to workspace 1", "focus workspace 1"]
     binding: "Alt+Shift+1"
