@@ -106,6 +106,20 @@ EOF
     TERM = "xterm-256color";
   };
 
+  # Services (managed)
+  
+  services.gpg-agent = {
+    enable = true;
+    defaultCacheTtl = 1800;
+    enableSshSupport = true;
+  };
+
+  services.ollama = {
+    enable = true;
+    acceleration = false;
+  };
+
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
