@@ -35,9 +35,6 @@ zinit light zsh-users/zsh-history-substring-search
 zinit ice wait'2' lucid
 zinit light zdharma-continuum/history-search-multi-word
 
-zinit ice pick'init.zsh'
-zinit light laggardkernel/zsh-tmux
-
 # Ni
 zinit load azu/ni.zsh
 

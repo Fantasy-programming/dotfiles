@@ -1,6 +1,14 @@
 {  pkgs, ... }:
 
 {
+
+ nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (_: true);
+    };
+  };
+  
   # Info about the path home manager needs.
   home.username = "dogma";
   home.homeDirectory = "/home/dogma";
@@ -13,23 +21,28 @@
       pkgs.neovim
       pkgs.gh
       pkgs.unzip
-      pkgs.gcc
-      pkgs.cargo
+      pkgs.dtrx
       pkgs.devenv
       pkgs.fzf
       pkgs.eza
       pkgs.fd
+      pkgs.jq
       pkgs.ripgrep
       pkgs.yazi
-      pkgs.tmux
-      pkgs.gnupg
-      pkgs.ollama
-      pkgs.btop
-      pkgs.tmux-sessionizer
-      pkgs.jq
       pkgs.lazydocker
       pkgs.glow
       pkgs.dua
+      pkgs.btop
+      pkgs.pureref
+
+      # pkgs.gcc
+      # pkgs.cargo
+      # pkgs.cava
+      # pkgs.tmux # only works on nixos
+      # pkgs.kitty # only works on nixos 
+      pkgs.gnupg
+      # pkgs.tmux-sessionizer
+      pkgs.paru
   ];
 
   # Dotfiles (manual)
@@ -44,8 +57,8 @@
     enable = true;
     userName = "Fantasy Programming";
     userEmail = "freedominwork@fullmetal.anonaddy.com";
-    signing.key = "ADA372E9F6C2C4E3";
-    signing.signByDefault = true;
+    # signing.key = "ADA372E9F6C2C4E3";
+    # signing.signByDefault = true;
   };
 
   programs.lazygit = {
@@ -102,22 +115,14 @@ EOF
     nix-direnv.enable = true;
   };
 
-  home.sessionVariables = {
-    TERM = "xterm-256color";
-  };
 
   # Services (managed)
-  
   services.gpg-agent = {
     enable = true;
     defaultCacheTtl = 1800;
     enableSshSupport = true;
   };
 
-  services.ollama = {
-    enable = true;
-    acceleration = false;
-  };
 
 
   # Let Home Manager install and manage itself.
