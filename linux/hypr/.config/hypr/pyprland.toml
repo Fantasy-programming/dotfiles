@@ -1,0 +1,37 @@
+[pyprland]
+
+plugins = ["scratchpads", "magnify"]
+
+[scratchpads.term]
+animation = "fromTop"
+command = "kitty --class kitty-dropterm"
+class = "kitty-dropterm"
+size = "75% 60%"
+
+# [scratchpads.notes]
+# animation = "fromRight"
+# command = "feathernotes"
+# class = "feathernotes"
+# lazy = true
+# margin = 5
+# size = "40% 50%"
+#
+# [scratchpads.passw]
+# animation = "fromBottom"
+# command = "keepassxc"
+# class = "org.keepassxc.KeePassXC"
+# lazy = true
+# size = "60% 60%"
+#
+# [scratchpads.rang]
+# animation = "fromTop"
+# command = "alacritty --class ranger -e sudo -E ranger"
+# class = "ranger"
+# lazy = true
+#
+# [scratchpads.pama]
+# animation = "fromTop"
+# command = "pamac-manager"
+# class = "org.manjaro.pamac.manager"
+# lazy = true
+# size = "50% 80%"

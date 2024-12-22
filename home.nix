@@ -20,6 +20,7 @@
   home.packages = [
       pkgs.neovim
       pkgs.gh
+      pkgs.bat
       pkgs.unzip
       pkgs.dtrx
       pkgs.devenv
@@ -33,10 +34,14 @@
       pkgs.glow
       pkgs.dua
       pkgs.btop
-      pkgs.pureref
-
+      pkgs.thefuck
+      pkgs.gtrash
+      pkgs.nixd
+      pkgs.nodejs_23
+      pkgs.onefetch
       # pkgs.gcc
-      # pkgs.cargo
+      pkgs.cargo
+      pkgs.recoll
       # pkgs.cava
       # pkgs.tmux # only works on nixos
       # pkgs.kitty # only works on nixos 
@@ -55,10 +60,14 @@
   # Programs (managed)
   programs.git = {
     enable = true;
-    userName = "Fantasy Programming";
+    userName = "Fantasy-Programming";
     userEmail = "freedominwork@fullmetal.anonaddy.com";
     # signing.key = "ADA372E9F6C2C4E3";
     # signing.signByDefault = true;
+    extraConfig = {
+      init.defaultBranch = "main";
+      credential.helper = "libsecret";
+    };
   };
 
   programs.lazygit = {

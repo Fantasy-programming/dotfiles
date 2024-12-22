@@ -38,12 +38,4 @@ zinit light zdharma-continuum/history-search-multi-word
 # Ni
 zinit load azu/ni.zsh
 
-# EXA
-zinit ice wait lucid from"gh-r" as"program" mv"bin/exa* -> exa"
-zinit light ogham/exa
-
-# BAT
-zinit ice wait lucid from"gh-r" as"program" mv"*/bat -> bat" atload"export BAT_THEME='Nord'"
-zinit light sharkdp/bat
-
 # vim:ft=zsh

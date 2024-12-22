@@ -195,24 +195,37 @@ alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commi
 alias c="clear"
 alias q="exit"
 alias ..="cd .."
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias -- -='cd -'
 alias mkdir="mkdir -p"
+alias ip='ip -color=auto'
 alias psg="ps aux | grep -v grep | grep -i -e VSZ -e" 
-alias ls="exa --color=auto --icons"
+alias ls="eza --icons=always --color=always"
+alias diff='diff --color=auto'
 alias l="ls -l"
 alias la="ls -a"
 alias lla="ls -la"
 alias lt="ls --tree"
-alias cat="bat --color always --plain"
-alias grep='grep --color=auto'
+alias cat="bat --theme=base16 --color=always --style=plain --paging=never"
+alias grep='rg --color=auto'
 alias mv='mv -v'
 alias cp='cp -vr'
 alias rm='rm -vr'
+alias sudo='sudo ' # make sudo detect alias
+alias lg='lazygit'
 
 alias mtar='tar -zcvf' # mtar <archive_compress>
 alias utar='tar -zxvf' # utar <archive_decompress> <file_list>
 # alias z='zip -r' # z <archive_compress> <file_list>
 alias uz='unzip' # uz <archive_decompress> -d <dir>
+alias mpv='mpv --keep-open'
 
+
+# alias ytp='yt_search_play'
+# alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+# alias mp4='yt-dlp -S "res:1080" --remux mp4 --merge mp4 -o "%(title)s - %(uploader)s.%(ext)s"'
 
 ## System (linux)
 
@@ -221,6 +234,7 @@ alias trim_all="sudo fstrim -va"
 alias mkgrub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
 ## System (linux - arch)
+alias update='paru'
 alias pacin="pacman -Slq | fzf -m --preview 'cat <(pacman -Si {1}) <(pacman -Fl {1} | awk \"{print \$2}\")' | xargs -ro sudo pacman -S"
 alias paruin="paru -Slq | fzf -m --preview 'cat <(paru -Si {1}) <(paru -Fl {1} | awk \"{print \$2}\")' | xargs -ro  paru -S"
 alias pacrem="pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
@@ -231,5 +245,11 @@ alias pacupd="pacman -Qu"
 alias parucheck="paru -Gp"
 alias cleanpac='sudo pacman -Rns $(pacman -Qtdq); paru -c'
 alias installed="grep -i installed /var/log/pacman.log"
+alias shutdown='shutdown -h now'
+
+## Tools - cool
+# alias cleantweet = 'ffmpeg -i ${1} -r 30 -cfr 18 -b:a 192k -ac 1 -c:v libx264 -vf "scale=1920:1080" ${2}'
+
+
 
 # vim:ft=zsh
