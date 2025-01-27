@@ -1,0 +1,9 @@
+source $ZDOTDIR/theme.zsh
+source $ZDOTDIR/env.zsh
+source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/utility.zsh
+source $ZDOTDIR/options.zsh
+source $ZDOTDIR/plugins.zsh
+source $ZDOTDIR/keybinds.zsh
+source $ZDOTDIR/prompt.zsh
+source $ZDOTDIR/starship.zsh

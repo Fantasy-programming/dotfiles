@@ -1,0 +1,55 @@
+{
+  "spacing": 4,
+  // try to keep it 4px across the config
+  "height": 25,
+  "modules-left": [
+    "hyprland/workspaces"
+    // "custom/icon"
+    // "hyprland/window"
+  ],
+  "modules-right": [
+    "tray",
+    "pulseaudio",
+    "cpu",
+    "memory",
+    "battery",
+    "temperature",
+    "clock"
+  ],
+  /*
+		MODULES
+		*/
+  "custom/icon": {
+    "exec": "~/.config/waybar/state",
+    "interval": "once",
+    "signal": 8
+  },
+  "tray": {
+    "spacing": 10
+  },
+  "clock": {
+    "tooltip-format": "<big>[{:%Y %B}]</big>\n<tt><small>{calendar}</small></tt>",
+    "format": "[{:%H:%M}]",
+    "format-alt": "[{:%Y-%m-%d}]"
+  },
+  "cpu": {
+    "format": "[CPU:{usage}%]",
+    "tooltip": false
+  },
+  "memory": {
+    "format": "[MEM:{percentage}%]"
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "format-critical": "[!!{temperatureC}°C!!]",
+    "format": "[{temperatureC}°C]"
+  },
+  "battery": {
+    "format": "[BAT::{capacity}%]"
+  },
+  "pulseaudio": {
+    "format": "[VOL:{volume}%]",
+    "format-muted": "[VOL: M]",
+    "on-click": "pavucontrol"
+  }
+}

@@ -1,0 +1,81 @@
+# /* ---- 💫 https://github.com/JaKooLit 💫 ---- */  #
+
+# Rendering
+linux_display_server wayland
+
+# Preferences
+confirm_os_window_close 0
+enable_audio_bell yes
+detect_urls  yes
+sync_to_monitor         yes
+
+# Scrollback
+scrollback_lines 2000
+wheel_scroll_min_lines 1
+
+# Customization: Color scheme
+foreground #dddddd
+background #000000
+cursor #dddddd
+selection_foreground none
+selection_background none
+
+# Customization: Cursor
+cursor_shape beam
+cursor_trail 3
+
+# Customization: Window
+window_padding_width 4
+hide_window_decorations yes
+
+# Customization: Tabs
+tab_bar_edge bottom
+# enabled_layouts splits
+# wheel_scroll_multiplier 10.0
+# url_color    #0087bd
+# url_style    curly
+
+# Keybind
+map ctrl+shift+c copy_to_clipboard
+map ctrl+v paste_from_clipboard
+
+# Tab management
+# map kitty_mod+h     previous_tab
+# map kitty_mod+l     next_tab
+# map kitty_mod+t     new_tab
+# map kitty_mod+q     close_tab
+# map kitty_mod+.     move_tab_forward
+# map kitty_mod+,     move_tab_backward
+# map kitty_mod+alt+t set_tab_title
+# map ctrl+1 goto_tab 1
+# map ctrl+2 goto_tab 2
+# map ctrl+3 goto_tab 3
+# map ctrl+4 goto_tab 4
+# map ctrl+5 goto_tab 5
+
+# Font sizes
+# map ctrl+equal     change_font_size  +1
+# map ctrl+minus     change_font_size  -1
+# map kitty_mod+backspace change_font_size  10
+
+# Misc
+# map ctrl+backspace send_text all \x17 
+# map super+backspace send_text all \x15
+# map super+left send_text all \x01
+# map super+right send_text all \x05
+
+## Fonts
+font_size 14.0
+adjust_line_height  0
+adjust_column_width 0
+
+# BEGIN_KITTY_FONTS
+font_family      family="Berkeley Mono"
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+# END_KITTY_FONTS
+
+# Advanced
+allow_remote_control yes
+listen_on unix:/tmp/mykitty

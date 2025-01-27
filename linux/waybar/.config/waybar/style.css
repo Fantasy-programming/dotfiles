@@ -1,0 +1,71 @@
+@import "./base16/base16-default-dark.css";
+
+@define-color accent @base01;
+@define-color text @base07;
+@define-color invText @base07;
+/* text when background is accent */
+@define-color bg @base00;
+
+* {
+  font-family: Berkeley Mono;
+  font-size: 14px;
+  border-radius: 0px;
+  min-height: 0px;
+}
+
+window#waybar {
+  background-color: transparent; /* Was @accent */
+  color: @text;
+  opacity: 1;
+}
+
+#workspaces {
+  background-color: transparent;
+}
+
+#workspaces button {
+  padding: 0 5px;
+	color: @text;
+}
+
+#workspaces button.active {
+  background-color: @accent;
+  color: @invText;
+  /* color: @background; */
+}
+
+#pulseaudio,
+#cpu,
+#memory,
+#temperature,
+#battery,
+#clock,
+#tray,
+#custom-icon {
+  background-color: transparent;
+  color: @text;
+  margin: 0px;
+}
+
+#tray {
+  padding-left: 8px;
+}
+
+
+.modules-left {
+  background-color: @bg;
+  padding: 0px 0px 0px 0px;
+  border-radius: 0px 0px 4px 0px;
+}
+
+#window {
+  color: @invText;
+  background-color: @accent;
+  padding-left: 4px;
+}
+
+.modules-right {
+  background-color: @bg;
+  padding: 0px 0px 0px 0px;
+  border-radius: 0px 0px 0px 4px;
+}

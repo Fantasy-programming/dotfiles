@@ -1,0 +1,10 @@
+* {
+    main-bg:            rgba({{background | rgb}},0.7);
+    main-fg:            {{foreground}};
+    main-br:            {{color1}};
+    main-ex:            {{color2}};
+    select-bg:          {{color1}};
+    select-fg:          {{foreground}};
+    separatorcolor:     transparent;
+    border-color:       transparent;
+}

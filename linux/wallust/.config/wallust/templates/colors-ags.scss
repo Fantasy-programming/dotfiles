@@ -1,0 +1,18 @@
+$base: {{background}};
+$crust: #1d2021;
+$color00: {{color0}};
+$color01: {{foreground}};
+$color02: {{foreground}};
+$color03: {{color1}};
+$color04: {{color2}};
+$color05: {{color3}};
+$color06: {{color4}};
+$color07: {{color5}};
+$color08: {{color6}};
+$color09: {{color7}};
+$color10: {{color8}};
+$color11: {{color9}};
+
+$bg-alt: transparentize({{background}}, 0.5);
+$text: {{foreground}};
+$text-dimmed: transparentize({{foreground}}, 0.4);

@@ -1,0 +1,26 @@
+{
+  "Dotted Background": {
+    "prefix": "bg-dotted",
+    "body": [
+      "/* Dotted */",
+      "background: ${1|#222,url(\"dot.png\"),linear-gradient(#222, #111),linear-gradient(90deg, #222, #111)|};"
+    ],
+    "description": "Various dotted background styles."
+  },
+  "Stripes Background": {
+    "prefix": "bg-stripes",
+    "body": [
+      "/* Stripes */",
+      "background: repeating-linear-gradient(${1|#30be8b 0 1.5rem, #29a377 1.5rem 3rem|});"
+    ],
+    "description": "Repeating stripes background."
+  },
+  "Dim Background Image for Text": {
+    "prefix": "bg-dim",
+    "body": [
+      "/* Dim BG Image to Add Text */",
+      "background: linear-gradient(rgba(${1:0,0,0,0}), rgba(${2:0,0,0,1}));"
+    ],
+    "description": "Dim background image using a gradient."
+  }
+}

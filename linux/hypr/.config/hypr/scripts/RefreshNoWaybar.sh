@@ -25,7 +25,7 @@ for _prs in "${_ps[@]}"; do
 done
 
 # quit ags
-ags -q
+agsv1 -q
 
 # Wallust refresh
 ${SCRIPTSDIR}/WallustSwww.sh &
@@ -37,4 +37,3 @@ if file_exists "${UserScripts}/RainbowBorders.sh"; then
 fi
 
 exit 0
-

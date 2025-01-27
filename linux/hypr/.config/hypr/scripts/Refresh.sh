@@ -14,32 +14,28 @@ file_exists() {
 }
 
 # Kill already running processes
-_ps=(waybar rofi swaync ags)
+_ps=(rofi swaync waybar)
 for _prs in "${_ps[@]}"; do
   if pidof "${_prs}" >/dev/null; then
     pkill "${_prs}"
   fi
 done
 
-# quit ags
-ags -q
-
 sleep 0.3
 #Restart waybar
-waybar &
+killall -SIGUSR2 waybar
 
 # relaunch swaync
 sleep 0.5
 swaync >/dev/null 2>&1 &
 
-# relaunch ags
-ags &
+# relaunch waybar
+waybar &
 
 # Relaunching rainbow borders if the script exists
-sleep 1
-if file_exists "${UserScripts}/RainbowBorders.sh"; then
-  ${UserScripts}/RainbowBorders.sh &
-fi
+# sleep 1
+# if file_exists "${UserScripts}/RainbowBorders.sh"; then
+#   ${UserScripts}/RainbowBorders.sh &
+# fi
 
 exit 0
-
